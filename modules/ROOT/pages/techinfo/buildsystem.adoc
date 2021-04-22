@@ -1,0 +1,38 @@
+include::partial$attributes.adoc[]
+
+= The build system
+:toc:
+
+This page covers the CentOS Build System (CBS).
+
+== The CBS Service
+
+The current build service is at link:https://cbs.centos.org/koji/[].
+
+The service will be migrated to a different one in the future and still READ ONLY - only Red Hat employees will have write/admin access in CBS using the `cbs` command line.
+Authentication will be done via Kerberos with Red Hat accounts.
+The new URL is not yet defined but should be something like link:https://kojihub.stream.centos.org[].
+
+== The CBS command line interface
+
+The current CBS CLI is a wrapper to the Koji CLI and the new package will follow a similar approach: it will install Koji profiles for CBS and create a symlink `/usr/bin/cli` to `/usr/bin/koji`.
+
+The new CBS will be available in RPM packages. The names of those packages are not yet decided, but we know there will be two.
+For the purposes of this document, we will use `cbs-koji` and `stream-koji`.
+
+`cbs-koji` will install the CBS koji profile at `/etc/koji.conf.d/cbs-koji.conf`.
+
+`stream-koji` will install the CBS CLI by creating a symlink to the Koji CLI.
+Using the symlink will tell the Koji CLI to use the CBS profile.
+This will also enable users to use the Koji CLI as well, for example with `koji --profile cbs`.
+
+== GitLab
+
+The "source code" (spec files and so on) is hosted on GitLab at link:https://gitlab.com/redhat/centos-stream/rpms[].
+All GitLab activity is forwarded to Fedora Messaging, and you can see these messages at the following URL: link:https://apps.fedoraproject.org/datagrepper/raw?rows_per_page=1&delta=127800&category=gitlab[].
+
+== Links and references
+* link:https://gitlab.com/redhat/centos-stream/rpms[] - our gitlab organization for RPMs (repositories will be public once everything is in place)
+* link:https://wiki.centos.org/HowTos/CommunityBuildSystem[] - The current build system documentation
+* link:https://cbs.centos.org/koji/[] - The current build system URL
+* link:https://fedoraproject.org/wiki/Using_the_Koji_build_system[] - This is a Fedora guide on how to trigger a build in Koji (you can ignore the `fedpkg` parts)

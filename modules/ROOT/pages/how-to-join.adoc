@@ -1,0 +1,5 @@
+include::partial$attributes.adoc[]
+
+= How to join CentOS Stream
+
+This page is waiting for content.

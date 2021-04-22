@@ -1,0 +1,2 @@
+:PRODUCT: CentOS Stream
+:YEAR: 2021

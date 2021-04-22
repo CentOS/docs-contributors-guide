@@ -1,0 +1,15 @@
+* xref:index.adoc[Index]
+* xref:how-to-join.adoc[How to join CentOS Stream]
+* Contributing
+** xref:contributing/roles.adoc[Roles and responsibilities]
+** xref:contributing/sigs.adoc[Special interest groups (SIGs)]
+** xref:contributing/reporting-bugs.adoc[Reporting bugs]
+** xref:contributing/feature-requests.adoc[Feature requests]
+* Technical information
+** xref:techinfo/submitting-patches.adoc[Submitting patches]
+** xref:techinfo/testing.adoc[Testing]
+** xref:techinfo/buildsystem.adoc[The build system]
+** xref:techinfo/ci-cd.adoc[CI/CD]
+** xref:techinfo/releng.adoc[Release engineering]
+** xref:techinfo/packaging-guidelines.adoc[Packaging guidelines]
+* xref:glossary.adoc[Glossary of terms]

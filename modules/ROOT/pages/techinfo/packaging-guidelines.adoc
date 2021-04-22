@@ -1,0 +1,5 @@
+include::partial$attributes.adoc[]
+
+= Packaging guidelines
+
+This page is waiting for content.

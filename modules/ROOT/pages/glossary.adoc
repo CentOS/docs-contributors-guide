@@ -1,0 +1,13 @@
+include::partial$attributes.adoc[]
+
+== Glossary of terms
+
+This section serves to highlight certain terms which should be used on the project within specific situations.
+
+== Terms and phrases
+* Use “CentOS Stream” when referring to the Linux distribution, not just “CentOS”.
+* Use “CentOS” (without Stream) when referring to the CentOS Project.
+
+== Abbreviations
+* CentOS Stream 8: `c8s`
+* CentOS Stream 9: `c9s`

@@ -1,0 +1,5 @@
+include::partial$attributes.adoc[]
+
+= Special interest groups (SIGs)
+
+This page is waiting for content.

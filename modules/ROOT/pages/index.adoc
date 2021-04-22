@@ -1,0 +1,17 @@
+include::partial$attributes.adoc[]
+
+= CentOS Stream Contributor's Guide
+
+image:title_logo.svg[CentOS Documentation Project]
+
+[abstract]
+--
+CentOS Stream is a continuously delivered distribution that tracks just ahead of Red Hat Enterprise Linux (RHEL) development, positioned as a midstream between Fedora and RHEL.
+This guide explains the contribution process for CentOS Stream as well as the project’s technical background.
+
+To learn more about CentOS Stream, see the link:https://wiki.centos.org/FAQ/CentOSStream[FAQ]. Downloads are available on the link:https://centos.org/centos-stream/[project page]. Composes are available link:https://composes.centos.org/[here].
+
+If you wish to contribute to this guide, click the _Edit this page_ link in the top right corner of any page, and open an issue or submit a pull request.
+--
+
+include::partial$legal-notice.adoc[]

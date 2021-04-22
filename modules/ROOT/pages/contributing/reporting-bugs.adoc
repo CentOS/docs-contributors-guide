@@ -1,0 +1,5 @@
+include::partial$attributes.adoc[]
+
+= Reporting bugs
+
+This page is waiting for content.

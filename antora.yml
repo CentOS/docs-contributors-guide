@@ -1,0 +1,6 @@
+name: stream-contrib
+title: Contributor's Guide
+version: master
+start_page: ROOT:index
+nav:
+- modules/ROOT/nav.adoc
