@@ -1,6 +1,6 @@
 include::partial$attributes.adoc[]
 
-== Glossary of terms
+= Glossary of terms
 
 This section serves to highlight certain terms which should be used on the project within specific situations.
 
