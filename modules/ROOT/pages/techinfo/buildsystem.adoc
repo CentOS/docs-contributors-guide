@@ -3,28 +3,8 @@ include::partial$attributes.adoc[]
 = The build system
 :toc:
 
-This page covers the CentOS Build System (CBS).
+This page covers the CentOS Stream Build System.
 
-== The CBS Service
-
-The current build service is at link:https://cbs.centos.org/koji/[].
-
-The service will be migrated to a different one in the future and still READ ONLY - only Red Hat employees will have write/admin access in CBS using the `cbs` command line.
-Authentication will be done via Kerberos with Red Hat accounts.
-The new URL is not yet defined but should be something like link:https://kojihub.stream.centos.org[].
-
-== The CBS command line interface
-
-The current CBS CLI is a wrapper to the Koji CLI and the new package will follow a similar approach: it will install Koji profiles for CBS and create a symlink `/usr/bin/cli` to `/usr/bin/koji`.
-
-The new CBS will be available in RPM packages. The names of those packages are not yet decided, but we know there will be two.
-For the purposes of this document, we will use `cbs-koji` and `stream-koji`.
-
-`cbs-koji` will install the CBS koji profile at `/etc/koji.conf.d/cbs-koji.conf`.
-
-`stream-koji` will install the CBS CLI by creating a symlink to the Koji CLI.
-Using the symlink will tell the Koji CLI to use the CBS profile.
-This will also enable users to use the Koji CLI as well, for example with `koji --profile cbs`.
 
 == GitLab
 
