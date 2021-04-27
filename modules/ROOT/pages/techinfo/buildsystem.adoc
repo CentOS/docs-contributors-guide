@@ -5,6 +5,11 @@ include::partial$attributes.adoc[]
 
 This page covers the CentOS Stream Build System.
 
+== Koji
+
+
+== Module Build Service 
+
 
 == GitLab
 
@@ -13,6 +18,5 @@ All GitLab activity is forwarded to Fedora Messaging, and you can see these mess
 
 == Links and references
 * link:https://gitlab.com/redhat/centos-stream/rpms[] - our gitlab organization for RPMs (repositories will be public once everything is in place)
-* link:https://wiki.centos.org/HowTos/CommunityBuildSystem[] - The current build system documentation
-* link:https://cbs.centos.org/koji/[] - The current build system URL
+* link:https://kojihub.stream.centos.org/koji/[] - The current build system URL
 * link:https://fedoraproject.org/wiki/Using_the_Koji_build_system[] - This is a Fedora guide on how to trigger a build in Koji (you can ignore the `fedpkg` parts)
