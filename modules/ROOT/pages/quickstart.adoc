@@ -1,6 +1,7 @@
 include::partial$attributes.adoc[]
 
 = Contributing to CentOS Stream - Quickstart
+:toc:
 
 == Contributor Onboarding
 
@@ -18,7 +19,7 @@ To start making contributions you’ll need to log in to the following places:
 
 To work with dist-git repositories and inspect artifacts or logs in the buildsystem, you need `centpkg` installed on your workstation:
 
-* If you have a Fedora workstation: `dnf install centpkg` 
+* If you have a Fedora workstation: `dnf install centpkg`
 * If you have a CentOS Linux/Stream or RHEL workstation: `dnf install epel-release && dnf --enablerepo=epel-testing install centpkg`
 
 == What you do, what the RHEL maintainer takes care of
@@ -43,9 +44,9 @@ In the Gitlab repository you want to change, click the `Fork` button on the fron
 
 === 3.) Reference the bugzilla you filed in your commits
 
-Examples: 
+Examples:
 
-* `git commit --signoff -m 'This is my awesome patch, Related: rhbz#123456` 
+* `git commit --signoff -m 'This is my awesome patch, Related: rhbz#123456`
 * `git commit --signoff -m 'This is another patch to the same bug, Fixes: #123456 (The checkers let me leave off the rhbz prefix)'`
 
 Every commit made during your contribution MUST come with a Bugzilla referenced in the commit message.

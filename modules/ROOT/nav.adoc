@@ -1,5 +1,5 @@
 * xref:index.adoc[Index]
-* xref:how-to-join.adoc[How to join CentOS Stream]
+* xref:quickstart.adoc[Quick start guide for new contributors]
 * Contributing
 ** xref:contributing/roles.adoc[Roles and responsibilities]
 ** xref:contributing/sigs.adoc[Special interest groups (SIGs)]
