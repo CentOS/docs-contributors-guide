@@ -1,0 +1,104 @@
+include::partial$attributes.adoc[]
+
+= Contributing to CentOS Stream - Quickstart
+
+== Contributor Onboarding
+
+=== Accounts
+
+To start making contributions you’ll need to log in to the following places:
+
+* Gitlab - https://gitlab.com/users/sign_up[Sign Up]
+
+* CentOS Account System - https://accounts.centos.org/[Sign Up]
+
+* Bugzilla - https://bugzilla.redhat.com/saml2_login.cgi?idp=Fedora%20Account%20System&target=enter_bug.cgi[Sign In] using the link for the Fedora Account System using your CentOS Account (CentOS and Fedora now share an authentication system, so your password works in both places)
+
+=== Tools and workstation setup
+
+To work with dist-git repositories and inspect artifacts or logs in the buildsystem, you need `centpkg` installed on your workstation:
+
+* If you have a Fedora workstation: `dnf install centpkg` 
+* If you have a CentOS Linux/Stream or RHEL workstation: `dnf install epel-release && dnf --enablerepo=epel-testing install centpkg`
+
+== What you do, what the RHEL maintainer takes care of
+
+=== 1.) File a bugzilla!
+
+CentOS Stream bugs are filed under the Red Hat Enterprise Linux products in bugzilla, https://bugzilla.redhat.com/enter_bug.cgi?product=Red%20Hat%20Enterprise%20Linux%209&version=CentOS%20Stream[File a bug against CentOS Stream / RHEL 9]
+
+The `Component` is the name of the package that you want to patch
+
+Describe the change that you’d like to make, be sure to double-check for existing bugs that describe the feature request or issue that you’re seeing
+
+RHEL developers use bugzillas to coordinate with RHEL QE, schedule work with other maintainers, and track progress against development milestones. RHEL maintainers need to get a bugzilla `approved` for a release before they can merge your change, but don’t worry, this is something they take care of for you. You just need to file the bug and reference it.
+
+=== 2.) Develop your patch
+
+There are 2 ways to contribute, *Source Git* is in use by developers of packages that want to accept contributions directly to the source code and the package specs in the same place.
+
+*Dist-Git* is a familiar packaging format for folks who have done packaging in Fedora. The package specs are stored in git, and archives of the actual source code are located in the *lookaside*.
+
+In the Gitlab repository you want to change, click the `Fork` button on the front page to create your own fork.
+
+=== 3.) Reference the bugzilla you filed in your commits
+
+Examples: 
+
+* `git commit --signoff -m 'This is my awesome patch, Related: rhbz#123456` 
+* `git commit --signoff -m 'This is another patch to the same bug, Fixes: #123456 (The checkers let me leave off the rhbz prefix)'`
+
+Every commit made during your contribution MUST come with a Bugzilla referenced in the commit message.
+
+Once the commits are how you like them, push to your fork in Gitlab.
+
+=== 4.) Open a Merge Request
+
+The easiest way to open a merge request is to visit the target repository under the https://gitlab.com/redhat/centos-stream namespace and click the `New Merge Request` button on the `Merge Requests` tab.
+
+TODO: Image of the merge-requests tab
+
+Make sure to choose your fork and branch under the `Source Branch`. And the CentOS Stream repository + branch in `Target Branch`
+
+TODO: Image of Source branch / Target Branch
+
+=== 5.) Work with the RHEL package maintainer
+
+RHEL maintainers will work with you to evaluate your patch, review any needed changes, and potentially merge your request. If your patch is accepted for inclusion in CentOS Stream and RHEL, the RHEL maintainer will perform a package build and RPMs will show up in the buildsystem: https://kojihub.stream.centos.org/
+
+== Good Patch / Bad Patch
+
+TODO Couple of examples
+
+link:[TODO Link to longer policies]
+
+== Release Engineering, pipelines, and package state
+
+=== What’s going on with package X?
+
+Packages follow a regular process from build to release, all managed by tags in the buildsystem. Here’s a list of important koji tags and what they mean:
+
+[width="100%",cols="53%,47%",options="header",]
+|===
+|Koji Tag |Purpose
+|c9s-gate |This is where packages first land immediately after they build
+|c9s-pending |These packages have passed RHEL CI testing and CentOS Stream CI Testing (coming soon), these packages are also added to the buildroot when tagged here
+|c9s-build |This is a tag that includes all of the right inheritance to generate the buildroots
+|c9s-candidate |TODO
+|===
+
+For example, if you see a package that is listed in the `-gate` tag but not the `-pending` tag you know that it hasn’t passed its tests yet, and won’t make it into a compose until those are fixed.
+
+=== Pungi and the Compose Configs
+
+If you want to make changes to the overall distribution itself, or the artifacts produced by composes, or you’ll want to refer to the `Distribution` component in Bugzilla. Please file an appropriate bugzilla describing the change you’d like to make.
+
+If you’re familiar with Pungi, you’ll recognize the configs in https://gitlab.com/redhat/centos-stream/release-engineering/pungi-centos
+
+These configs follow a Fork/Merge-Request workflow and require review from CentOS Stream release engineers to be merged
+
+=== The Comps
+
+Comps control package groups, and repository split configurations. Changes here most likely require a `Distribution` component bug in bugzilla.
+
+https://gitlab.com/redhat/centos-stream/release-engineering/comps
