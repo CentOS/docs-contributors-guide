@@ -1,0 +1,53 @@
+include::partial$attributes.adoc[]
+
+= Source-git
+:toc:
+
+If you’re familiar with how packaging is done in CentOS and Fedora, you may know dist-git repositories: each repository represents a source RPM package and contains all the RPM source files (RPM spec file, upstream tarball checksum and optionally patch files and other files).
+But the repository itself doesn't contain source code - you need to execute `%prep` phase to retrieve it from the cache.
+
+With source-git, the sources are unpacked and downstream changes are layered on top as additional commits. The repositories don't contain upstream git history now, instead we are unpacking an archive for the corresponding upstream release and this is the first commit.
+For more details on how to work in a source-git repository, please head on to https://packit.dev/docs/source-git/work-with-source-git/[packit's documentation].
+
+== Submitting a change in a source-git repo
+
+If you want to update packaging files (in SPECS directory), you can go ahead and change them - no special care is needed.
+
+=== Changing source code by defining the patch in a spec file
+
+Creating source code changes needs a bit more work. Packages are modified in CentOS Stream by creating patch files and defining those patches in a spec file. The patches are then applied during a build process in a `%prep` section.
+
+If you are changing source code and you know that a patch in the spec is needed, add the patch to the spec file with a name of your choice:
+----
+Patch123: my-special-change.patch
+----
+Now you need to annotate commit message with the respective change
+----
+We need this change in CentOS Stream
+
+patch_name: my-special-change.patch
+present_in_specfile: true
+
+Signed-off-by: Tomas Tomecek <ttomecek@redhat.com>
+---
+ src/code.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
+----
+The automation, packit, then reads the commit message, knows that the patch is already defined in the spec and creates a patch file with the name set in `patch_name` from the respective commit when creating a SRPM.
+
+This is the preferred way of changing source code since you are in full control of the process.
+
+=== Changing source code: packit takes care of patches
+
+If packit does not find such metadata as defined above in a commit message:
+
+1. it adds a new patch entry in the spec file
+2. and generates a patch file from the respective commit
+
+This is convenient but prone to errors. In case this method does not work, please set the metadata as described in the method above.
+
+== After a merge request is created
+
+When you submit a merge request for source-git, automation will pick up the change and build it - there will be RPMs with your change available so you can try them out or just make sure it builds fine.
+
+Once your change is accepted, it will be marked with the label `accepted`. Our automation will create a corresponding bugzilla with the patch attached and then it’s up to the RHEL maintainer to pick it up, commit and build internally so that it can land back into CentOS Stream - this process can take some time, so please be patient.

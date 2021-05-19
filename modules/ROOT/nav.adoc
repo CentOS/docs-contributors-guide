@@ -5,6 +5,7 @@
 ** xref:contributing/sigs.adoc[Special interest groups (SIGs)]
 ** xref:contributing/reporting-bugs.adoc[Reporting bugs]
 ** xref:contributing/feature-requests.adoc[Feature requests]
+** xref:contributing/source-git.adoc[Source-git]
 * Technical information
 ** xref:techinfo/submitting-patches.adoc[Submitting patches]
 ** xref:techinfo/testing.adoc[Testing]
