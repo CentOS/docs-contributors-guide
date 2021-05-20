@@ -8,7 +8,7 @@ But the repository itself doesn't contain source code - you need to execute `%pr
 
 CentOS Stream 8 and CentOS Stream 9 have orthogonal relationship with Red Hat Enterprise Linux and because of this fact, source-git repositories work differently for both `c8s` and `c9s`.
 
-With CentOS Stream 8 source-git, the sources are unpacked and downstream code changes are layered on top as additional commits. The repositories don't contain upstream git history, instead we are unpacking an archive for the corresponding upstream release and this is the first commit. These are tracked as `c8s`, are updated continuously from [git.centos.org](https://git.centos.org/rpms). This means that merge requests cannot be merged here and contirubtions need to go through bugzilla and processed internally first.
+With CentOS Stream 8 source-git, the sources are unpacked and downstream code changes are layered on top as additional commits. The repositories don't contain upstream git history, instead we are unpacking an archive for the corresponding upstream release and this is the first commit. These are tracked as `c8s`, are updated continuously from https://git.centos.org/rpms[git.centos.org]. This means that merge requests cannot be merged here and contirubtions need to go through bugzilla and processed internally first.
 
 CentOS Stream 9 is in a completely different position: Red Hat that want to use a source-based workflow will be working here and MRs will be merged to the `c9s` branches and synchronized to dist-git.
 
