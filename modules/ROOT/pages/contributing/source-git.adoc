@@ -6,7 +6,12 @@ include::partial$attributes.adoc[]
 If you’re familiar with how packaging is done in CentOS and Fedora, you may know dist-git repositories: each repository represents a source RPM package and contains all the RPM source files (RPM spec file, upstream tarball checksum and optionally patch files and other files).
 But the repository itself doesn't contain source code - you need to execute `%prep` phase to retrieve it from the cache.
 
-With source-git, the sources are unpacked and downstream changes are layered on top as additional commits. The repositories don't contain upstream git history now, instead we are unpacking an archive for the corresponding upstream release and this is the first commit.
+CentOS Stream 8 and CentOS Stream 9 have orthogonal relationship with Red Hat Enterprise Linux and because of this fact, source-git repositories work differently for both `c8s` and `c9s`.
+
+With CentOS Stream 8 source-git, the sources are unpacked and downstream code changes are layered on top as additional commits. The repositories don't contain upstream git history, instead we are unpacking an archive for the corresponding upstream release and this is the first commit. These are tracked as `c8s`, are updated continuously from [git.centos.org](https://git.centos.org/rpms). This means that merge requests cannot be merged here and contirubtions need to go through bugzilla and processed internally first.
+
+CentOS Stream 9 is in a completely different position: Red Hat that want to use a source-based workflow will be working here and MRs will be merged to the `c9s` branches and synchronized to dist-git.
+
 For more details on how to work in a source-git repository, please head on to https://packit.dev/docs/source-git/work-with-source-git/[packit's documentation].
 
 == Submitting a change in a source-git repo
@@ -15,7 +20,7 @@ If you want to update packaging files (in SPECS directory), you can go ahead and
 
 === Changing source code by defining the patch in a spec file
 
-Creating source code changes needs a bit more work. Packages are modified in CentOS Stream by creating patch files and defining those patches in a spec file. The patches are then applied during a build process in a `%prep` section.
+Creating source code changes needs a bit more work. Packages are modified in CentOS Stream 8 traditional dist-git workflow by creating patch files and defining those patches in a spec file. The patches are then applied during a build process in a `%prep` section.
 
 If you are changing source code and you know that a patch in the spec is needed, add the patch to the spec file with a name of your choice:
 ----
@@ -50,4 +55,4 @@ This is convenient but prone to errors. In case this method does not work, pleas
 
 When you submit a merge request for source-git, automation will pick up the change and build it - there will be RPMs with your change available so you can try them out or just make sure it builds fine.
 
-Once your change is accepted, it will be marked with the label `accepted`. Our automation will create a corresponding bugzilla with the patch attached and then it’s up to the RHEL maintainer to pick it up, commit and build internally so that it can land back into CentOS Stream - this process can take some time, so please be patient.
+When you create a merge request, our automation will create a corresponding bugzilla with the patch attached. It’s up to the RHEL maintainer to pick up your contribution and assess it.If the change is accepted, the Red Hat maintainer has to commit and build the change internally so that it can land back into CentOS Stream 8 - this process can take some time, so please be patient.
