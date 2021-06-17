@@ -20,7 +20,7 @@ To start making contributions you’ll need to log in to the following places:
 To work with dist-git repositories and inspect artifacts or logs in the buildsystem, you need `centpkg` installed on your workstation:
 
 * If you have a Fedora workstation: `dnf install centpkg`
-* If you have a CentOS Linux/Stream or RHEL workstation: `dnf install epel-release && dnf --enablerepo=epel-testing install centpkg`
+* If you have a CentOS Linux/Stream or RHEL workstation, enable the https://fedoraproject.org/wiki/EPEL#Quickstart[EPEL repository] and then: `dnf install centpkg`
 
 == What you do, what the RHEL maintainer takes care of
 
