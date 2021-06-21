@@ -10,13 +10,41 @@ This page covers the CentOS Stream Build System.
 
 == Module Build Service 
 
+=== Process for module building in Stream 9
+
+* Make sure you have the latest version of `centpkg` installed--0.6.6 or later is required.
+
+* Build the module in CentOS Stream:
+----
+# get a Kerberos ticket
+kinit _username_@REDHAT.COM
+
+# clone the module repository
+centpkg clone modules/_modulename_
+
+# change to the directory
+cd _modulename_
+
+# switch to the module’s stream branch
+centpkg switch-branch _streamname_
+
+# build the module for EL9, optionally as a scratch build
+centpkg module-build --scratch --buildrequires platform:el9
+# or
+centpkg module-build --buildrequires platform:el9
+----
+* If the module build was submitted successfully, the module build ID will be reported.
+You can monitor the progress of the build in the MBS and Koji by running `centpkg module-build-watch _moduleID_`.
+An even simpler way to do this is by adding the `--watch` flag when submitting the build. (eg., `centpkg module-build --watch ...`)
 
 == GitLab
 
 The "source code" (spec files and so on) is hosted on GitLab at link:https://gitlab.com/redhat/centos-stream/rpms[].
+Module definitions (modulemd YAML files) are hosted on GitLab at link:https://gitlab.com/redhat/centos-stream/modules[].
 All GitLab activity is forwarded to Fedora Messaging, and you can see these messages at the following URL: link:https://apps.fedoraproject.org/datagrepper/raw?rows_per_page=1&delta=127800&category=gitlab[].
 
 == Links and references
 * link:https://gitlab.com/redhat/centos-stream/rpms[] - our gitlab organization for RPMs (repositories will be public once everything is in place)
 * link:https://kojihub.stream.centos.org/koji/[] - The current build system URL
+* link:https://mbs.stream.centos.org/[] - The module build service URL
 * link:https://fedoraproject.org/wiki/Using_the_Koji_build_system[] - This is a Fedora guide on how to trigger a build in Koji (you can ignore the `fedpkg` parts)
