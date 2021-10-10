@@ -9,7 +9,7 @@
 * Technical information
 ** xref:techinfo/submitting-patches.adoc[Submitting patches]
 ** xref:techinfo/testing.adoc[Testing]
-** xref:techinfo/buildsystem.adoc[The build system]
+** xref:techinfo/buildsystem.adoc[Build system]
 ** xref:techinfo/ci-cd.adoc[CI/CD]
 ** xref:techinfo/releng.adoc[Release engineering]
 ** xref:techinfo/packaging-guidelines.adoc[Packaging guidelines]

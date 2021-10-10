@@ -1,2 +1,19 @@
 :PRODUCT: CentOS Stream
-:YEAR: 2021
+:YEAR: 2022
+
+// Base URLs
+:centos-sigs:          https://www.centos.org/about/governance/sigs/
+:pagure:               https://pagure.io
+:pagure-docs:          https://docs.pagure.org
+:redhat-gitlab:        https://gitlab.com/redhat
+:stream-gitlab:        {redhat-gitlab}/centos-stream
+:centos-gitlab:        https://gitlab.com/CentOS
+:centos-pagure:        https://git.centos.org
+:fas:                  https://accounts.fedoraproject.org
+:fedora-proj:          https://getfedora.org
+:fedora-docs:          https://docs.fedoraproject.org/en-US
+:fedora-apps:          https://apps.fedoraproject.org
+:distgit:              https://github.com/release-engineering/dist-git
+:cbs:                  https://cbs.centos.org
+:mbox-koji:            https://koji.mbox.centos.org
+:stream-koji:          https://kojihub.stream.centos.org

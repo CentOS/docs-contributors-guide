@@ -1,22 +1,75 @@
 include::partial$attributes.adoc[]
 
-= The build system
+= The Build System
 :toc:
 
-This page covers the CentOS Stream Build System.
-
-== Koji
+The CentOS Project uses and makes available several services that compose its build system. These tools are used by both the core project to produce the CentOS Linux and CentOS Stream distributions, and by the various {centos-sigs}[Special Interest Group (SIG)] projects.
 
 
-== Module Build Service 
+== Source Code
+
+All artifacts (RPMs, container images, ISO images) build using source code stored in a Git version control system. Repositories have different branches reflecting the build environment those sources will be used in. The CentOS Project has two primary locations for this content.
+
+=== GitLab
+
+link:{stream-gitlab}[GitLab.com] is the platform for developing CentOS Stream 9 and later. Projects are publicly accessible and a GitLab account can be used to contribute.
+
+All GitLab activity is forwarded to link:{fedora-apps}/datagrepper[Fedora Messaging]. The GitLab specific messages ca be seen at the following link: link:{fedora-apps}/datagrepper/raw?rows_per_page=1&delta=127800&category=gitlab[CentOS GitLab Messages].
+
+=== CentOS Git
+
+link:{centos-pagure}[CentOS Git] hosts content derived from Red Hat Enterprise Linux(R) source RPMs and content used by SIGs. The platform is a project-hosted instance of link:{pagure}/pagure[Pagure], a Git forge developed and used by link:{fedora-proj}[Fedora](R). Projects are publicly accessible, and a link:{fas}[Fedora Account System (FAS)] identity required for contributor access.
+
+=== DistGit
+
+Though Git is a critical part of the Project's build system, it is not the best solution for dealing with non-text objects such as upstream code tarballs and binary files. link:{distgit}[DistGit] is an integration with Git that provides tooling to be able to accommodate the tracking of these assets alongside the RPM repositories. It creates a lookaside cache that stores the objects and modifies a designated file in the RPM repository that references them with a SHA hash. On CentOS Git this is the `.<package>.metadata` file, and on GitLab the `sources` file. During the build process objects referenced in the DistGit file will be pulled from the lookaside cache into the appropriate directories.
+
+For example, the Git package repository:
+
+:gco-git:   {centos-pagure}/rpms/git/blob/c8s/f/.git.metadata
+:gl-git:    {stream-gitlab}/rpms/git/-/blob/c9s/sources
+
+.CentOS Git: link:{gco-git}[.git.metadata]
+[source,text]
+996c0be58e901deb4ef9d0145e7bf98cdf6a0fb3 SOURCES/git-2.27.0.tar.xz
+097b8da13939ac9f51f97a5659184c1d96fb0973 SOURCES/gpgkey-junio.asc
+
+.GitLab: link:{gl-git}[sources]
+[source,text]
+SHA512 (git-2.31.1.tar.xz) = 9aa334a3e8519700ff5d112153ec42677722980094caa9d22aa91afdb65166bd9a98fa445c0d327c428ebfa73bf4832e9b3836109a1d9319feafe3191cfd170e
+SHA512 (git-2.31.1.tar.sign) = 0a721876f9869d1dc9a43e7f83f8e63a3d8fa932ff2d2e69bb98f3e314e2e9a896c2171cb6a020d6c6e929fdf1af736dbeb3f25f93fb4d359a9aaa5b859069c3
 
 
-== GitLab
+== Build Platform
 
-The "source code" (spec files and so on) is hosted on GitLab at link:https://gitlab.com/redhat/centos-stream/rpms[].
-All GitLab activity is forwarded to Fedora Messaging, and you can see these messages at the following URL: link:https://apps.fedoraproject.org/datagrepper/raw?rows_per_page=1&delta=127800&category=gitlab[].
+=== Koji
 
-== Links and references
-* link:https://gitlab.com/redhat/centos-stream/rpms[] - our gitlab organization for RPMs (repositories will be public once everything is in place)
-* link:https://kojihub.stream.centos.org/koji/[] - The current build system URL
-* link:https://fedoraproject.org/wiki/Using_the_Koji_build_system[] - This is a Fedora guide on how to trigger a build in Koji (you can ignore the `fedpkg` parts)
+The service that builds the various distribution deliverables (RPMs, container archives, disk images, LiveMedia installers, etc) is link:{pagure}/koji[Koji]. Within the CentOS Project infrastructure, there are three Koji instances:
+
+[cols="1,1"]
+|===
+|Service Instance |Purpose
+
+|link:{stream-koji}[CentOS Stream Build Service] (KojiHub)
+|Builds CentOS Stream 9, pulling sources from Gitlab.
+
+|link:{mbox-koji}[CentOS Build Service] (MBOX Koji)
+|Builds CentOS Linux and CentOS Stream 8, pulling sources from CentOS Git.
+
+|link:{cbs}[Community Build Service] (CBS)
+|Used by community projects, such as SIGs, to produce deliverables. Sources are pulled from CentOS Git.
+
+Currently does not support Modularity packaging.
+|===
+
+[IMPORTANT]
+.Migration in Progress
+====
+The CentOS Stream 8 build pipeline is migrating to the Koji instance used by CentOS Stream 9.
+====
+
+A primer on using Koji can be found in the Fedora documentation (the `fedpkg` parts can be ignored): link:{fedora-docs}/package-maintainers/Using_the_Koji_Build_System[Using the Koji build system]. Please see the link:{pagure-docs}/koji[Koji documentation] for more detailed instructions and information about Koji's capabilities.
+
+=== Module Build Service
+
+link:{pagure}/fm-orchestrator[MBS] integrates with Koji and handles the building of link:{fedora-docs}/modularity[Modularity] related projects.
