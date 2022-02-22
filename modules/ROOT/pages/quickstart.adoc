@@ -82,9 +82,9 @@ Packages follow a regular process from build to release, all managed by tags in 
 [width="100%",cols="53%,47%",options="header",]
 |===
 |Koji Tag |Purpose
-|c9s-candidate |This is where new builds are stored, they will continue to c9s-gate
 |c9s-gate |This is where packages first land immediately after they build
-|c9s-pending |These packages have passed RHEL CI testing and CentOS Stream CI Testing (coming soon), these packages are also added to the buildroot when tagged here
+|c9s-candidate |These packages have passed gating based on RHEL CI testing and CentOS Stream CI Testing (coming soon)
+|c9s-pending |These packages have passed gating and preverification, these packages are also added to the buildroot when tagged here
 |c9s-build |This is a tag that includes all of the right inheritance to generate the buildroots
 |c9s-compose |New composes will be generated from packages in this tag
 |===
