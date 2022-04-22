@@ -43,7 +43,7 @@ The automation, packit, then reads the commit message, knows that the patch is a
 
 This is the preferred way of changing source code since you define the name of the patch files.
 
-For more details on how to work in a source-git repository, please head on to https://packit.dev/docs/source-git/work-with-source-git/[packit's documentation].
+For more details on how to work in a source-git repository, please head on to https://packit.dev/source-git/work-with-source-git/[packit's documentation].
 
 === After a merge request is created
 
