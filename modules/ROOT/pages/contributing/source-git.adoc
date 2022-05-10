@@ -51,21 +51,3 @@ You should receive a review from a Red Hat maintainer. And that's the time as wi
 Once your MR is approved, it's gonna be merged first in a respective dist-git repo to make sure it can built and passes all the checks. Once all is good, it can be merged in the source-git repo as well.
 
 When you open a source-git MR, you'll be able to see CI checks which are coming from a mirrored MR which was automatically created in dist-git.
-
-== CentOS Stream 8
-
-With CentOS Stream 8 source-git, source archives are unpacked into a single git-commit and downstream code changes are layered on top as additional commits. The repositories don't contain upstream git history. These repositories are updated continuously from https://git.centos.org/rpms[git.centos.org]. This means that merge requests cannot be merged here and contributions need to go through bugzilla and processed internally first.
-
-=== Submitting a change in a source-git repo
-
-If you want to update packaging files (in SPECS directory), you can go ahead and change them - no special care is needed.
-
-=== Changing source code by defining the patch in a spec file
-
-The same as CentOS Stream 9.
-
-=== After a merge request is created
-
-When you submit a merge request for a CentOS Stream 8 source-git repo, automation will pick up the change and build it - there will be RPMs with your change available so you can try them out or just make sure it builds fine.
-
-When you create a merge request, our automation will create a corresponding bugzilla with the patch attached. It’s up to the RHEL maintainer to pick up your contribution and assess it.If the change is accepted, the Red Hat maintainer has to commit and build the change internally so that it can land back into CentOS Stream 8 - this process can take some time, so please be patient.
