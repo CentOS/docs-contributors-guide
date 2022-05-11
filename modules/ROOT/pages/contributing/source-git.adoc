@@ -30,9 +30,8 @@ Now you need to annotate the git commit which matches the patch with the respect
 ----
 We need this change in CentOS Stream
 
-patch_name: my-special-change.patch
-
 Signed-off-by: Tomas Tomecek <ttomecek@redhat.com>
+patch_name: my-special-change.patch
 
 ---
  src/code.c | 17 +++++++++--------
