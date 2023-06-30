@@ -47,7 +47,7 @@ In the Gitlab repository you want to change, click the `Fork` button on the fron
 Examples:
 
 * `git commit --signoff -m 'This is my awesome patch, Related: rhbz#123456`
-* `git commit --signoff -m 'This is another patch to the same bug, Fixes: #123456 (The checkers let me leave off the rhbz prefix)'`
+* `git commit --signoff -m 'This is another patch to the same bug, Resolves: #123456 (The checkers let me leave off the rhbz prefix)'`
 
 Every commit made during your contribution MUST come with a Bugzilla referenced in the commit message.
 
