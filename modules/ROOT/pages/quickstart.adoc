@@ -93,7 +93,7 @@ For example, if you see a package that is listed in the `-gate` tag but not the 
 
 === Pungi and the Compose Configs
 
-If you want to make changes to the overall distribution itself, or the artifacts produced by composes, or you’ll want to refer to the `Distribution` component in the RHEL project. Please file an appropriate issue describing the change you’d like to make.
+If you want to make changes to the overall distribution itself, or the artifacts produced by composes, you’ll want to refer to the `Distribution` component in the RHEL project. Please file an appropriate issue describing the change you’d like to make.
 
 If you’re familiar with Pungi, you’ll recognize the configs in https://gitlab.com/redhat/centos-stream/release-engineering/pungi-centos
 
