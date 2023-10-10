@@ -83,13 +83,19 @@ Packages follow a regular process from build to release, all managed by tags in 
 |===
 |Koji Tag |Purpose
 |c9s-gate |This is where packages first land immediately after they build
-|c9s-candidate |These packages have passed gating based on RHEL CI testing and CentOS Stream CI Testing (coming soon)
+|c9s-candidate |These packages have passed gating based on RHEL CI testing and https://centos.softwarefactory-project.io/zuul/t/centos/status[CentOS Stream CI Testing]
 |c9s-pending |These packages have passed gating and preverification, these packages are also added to the buildroot when tagged here
-|c9s-build |This is a tag that includes all of the right inheritance to generate the buildroots
+|c9s-pending-signed | These packages have been signed by the signing automation, and are ready for compose
+|c9s-build | This is a tag that includes all of the right inheritance to generate the buildroots
 |c9s-compose |New composes will be generated from packages in this tag
+|c9s-released|Packages which have been released to mirrors are tagged into this once they are visible on the Stream mirrors.
 |===
 
 For example, if you see a package that is listed in the `-gate` tag but not the `-pending` tag you know that it hasn’t passed its tests yet, and won’t make it into a compose until those are fixed.
+
+Composes are performed defined here: https://gitlab.com/redhat/centos-stream/release-engineering/releng-tools/-/blob/master/jenkins/jobs/stream9_composes.jenkins?ref_type=heads#L35[automatically] on *Monday*, *Wednesday*, *Friday*, and *Saturday* by https://testing.stream.centos.org/[Jenkins]. The C9S Stream Compose job in Jenkins can be found https://jenkins.stream.centos.org/view/c9s%20release/[here].
+
+Once a compose is complete and passes, another Jenkins instance is invoked to test the compose itself. The results of these tests are reviewed manually and then pushed out to mirrors by Releng.
 
 === Pungi and the Compose Configs
 
