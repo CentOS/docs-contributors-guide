@@ -27,7 +27,11 @@ To work with dist-git repositories and inspect artifacts or logs in the buildsys
 
 === 1.) File an issue!
 
-CentOS Stream defects and feature requests are filed under the RHEL project in issues.redhat.com, https://issues.redhat.com/projects/RHEL[Create an issue against CentOS Stream / RHEL 9]
+CentOS Stream defects and feature requests are filed under the RHEL project in https://issues.redhat.com/[issues.redhat.com].
+
+* https://issues.redhat.com/secure/CreateIssueDetails!init.jspa?pid=12332745&issuetype=1&versions=12410187[Create an issue against CentOS Stream / RHEL 8]
+* https://issues.redhat.com/secure/CreateIssueDetails!init.jspa?pid=12332745&issuetype=1&versions=12412761[Create an issue against CentOS Stream / RHEL 9]
+* https://issues.redhat.com/secure/CreateIssueDetails!init.jspa?pid=12332745&issuetype=1&versions=12412762[Create an issue against CentOS Stream / RHEL 10]
 
 The `Component` is the name of the package that you want to patch
 
