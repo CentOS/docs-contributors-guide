@@ -97,9 +97,9 @@ Packages follow a regular process from build to release, all managed by tags in 
 
 For example, if you see a package that is listed in the `-gate` tag but not the `-pending` tag you know that it hasn’t passed its tests yet, and won’t make it into a compose until those are fixed.
 
-Composes are performed defined here: https://gitlab.com/redhat/centos-stream/release-engineering/releng-tools/-/blob/master/jenkins/jobs/stream9_composes.jenkins?ref_type=heads#L35[automatically] on *Monday*, *Wednesday*, *Friday*, and *Saturday* by https://testing.stream.centos.org/[Jenkins]. The C9S Stream Compose job in Jenkins can be found https://jenkins.stream.centos.org/view/c9s%20release/[here].
+Composes are performed defined here: https://gitlab.com/redhat/centos-stream/release-engineering/releng-tools/-/blob/master/jenkins/jobs/stream9_composes.jenkins?ref_type=heads#L9[automatically] multiple times a week by https://jenkins.stream.centos.org/view/c9s%20release/[Releng Jenkins].
 
-Once a compose is complete and passes, another Jenkins instance is invoked to test the compose itself. The results of these tests are reviewed manually and then pushed out to mirrors by Releng.
+Once a compose is complete and passes, it gets tested in the https://testing.stream.centos.org/[testing Jenkins instance]. The results of these tests are reviewed manually and then pushed out to mirrors by Releng.
 
 === Pungi and the Compose Configs
 
