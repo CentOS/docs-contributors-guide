@@ -114,3 +114,15 @@ These configs follow a Fork/Merge-Request workflow and require review from CentO
 Comps control package groups, and repository split configurations. Changes here most likely require a `Distribution` component issue in the RHEL project.
 
 https://gitlab.com/redhat/centos-stream/release-engineering/comps
+
+=== Composes and release
+
+Packages are built into the daily compose which, after testing, is published to
+
+https://composes.stream.centos.org/production/
+
+Days may be missing if testing is unsuccessful.  Selected builds are promoted to the official mirrors at
+
+http://mirror.stream.centos.org/
+
+This is currently a manual process and happens usually once a week.
