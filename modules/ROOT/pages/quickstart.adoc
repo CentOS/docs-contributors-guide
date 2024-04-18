@@ -95,11 +95,9 @@ Packages follow a regular process from build to release, all managed by tags in 
 |c9s-released|Packages which have been released to mirrors are tagged into this once they are visible on the Stream mirrors.
 |===
 
+(Note the c9s part can be also c8s or c10s for CentOS Stream 8 or 10 respectively.)
+
 For example, if you see a package that is listed in the `-gate` tag but not the `-pending` tag you know that it hasn’t passed its tests yet, and won’t make it into a compose until those are fixed.
-
-Composes are performed defined here: https://gitlab.com/redhat/centos-stream/release-engineering/releng-tools/-/blob/master/jenkins/jobs/stream9_composes.jenkins?ref_type=heads#L9[automatically] multiple times a week by https://jenkins.stream.centos.org/view/c9s%20release/[Releng Jenkins].
-
-Once a compose is complete and passes, it gets tested in the https://testing.stream.centos.org/[testing Jenkins instance]. The results of these tests are reviewed manually and then pushed out to mirrors by Releng.
 
 === Pungi and the Compose Configs
 
@@ -117,12 +115,8 @@ https://gitlab.com/redhat/centos-stream/release-engineering/comps
 
 === Composes and release
 
-Packages are built into the daily compose which, after testing, is published to
+Packages are built into a compose that happens multiple times a week, triggered by the https://jenkins.stream.centos.org/view/c9s%20release/[Releng Jenkins]. The results can be found on https://composes.stream.centos.org/[composes.stream.centos.org]. 
 
-https://composes.stream.centos.org/production/
+How often they happen is defined in a Jenkins config file - see the https://gitlab.com/redhat/centos-stream/release-engineering/releng-tools/-/blob/master/jenkins/jobs/stream9_composes.jenkins?ref_type=heads#L35[c9s config for example].
 
-Days may be missing if testing is unsuccessful.  Selected builds are promoted to the official mirrors at
-
-http://mirror.stream.centos.org/
-
-This is currently a manual process and happens usually once a week.
+Once a compose is complete, it gets tested by the https://testing.stream.centos.org/[testing Jenkins instance]. The results of these tests are reviewed manually and then pushed out to mirrors at https://mirror.stream.centos.org/[mirror.stream.centos.org] by Releng. This is currently a manual process and happens usually once a week.
